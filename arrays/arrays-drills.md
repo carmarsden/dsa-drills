@@ -5,9 +5,10 @@ Be sure to export the memory module and then import it using require.
 
 **See array.js file**
 
-2. Explore the push() method
+## 2. Explore the push() method
 Using the Array class you just created above, add an item to the array. Use the following function:
 
+```
 function main(){
 
     Array.SIZE_RATIO = 3;
@@ -20,17 +21,29 @@ function main(){
 
     console.log(arr);
 }
-What is the length, capacity and memory address of your array?
+```
+
+* What is the length, capacity and memory address of your array?
+    * Length = 1
+    * Capacity = 3
+    * Memory address = 0
 
 Add the following in the main function and then print the array:
 
+```
     ...
     arr.push(5);
     arr.push(15);
     arr.push(19);
     arr.push(45);
     arr.push(10);
-What is the length, capacity and memory address of your array? Explain the result of your program after adding the new lines of code.
+```
+
+* What is the length, capacity and memory address of your array? Explain the result of your program after adding the new lines of code.
+    * Length = 6 --> we pushed 6 items overall
+    * Capacity = 12 --> initial capacity 3. push items 1, 2, 3 without issue. When we push item 4, it needs to resize which sets length to 4 and new capacity (based on size ratio 3) to 12. Pushing items 5 & 6 no longer need a capacity resize as we have space.
+    * Memory address = 3 --> this is the new "head" / start of our array in memory, because the old array had a length of 3 (it took up indexes 0-2) and then it needed to be resized, so upon resizing the old array with length 3 was copied over to a new array of length 12 starting at the next available memory address (3)
+
 3. Exploring the pop() method
 Add the following in the main function and then print the array:
 
