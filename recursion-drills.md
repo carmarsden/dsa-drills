@@ -7,15 +7,26 @@
     4. What is the output of each recursive call?
 * Start each problem by understanding the problem and coming up with some sample input and output. In some of the drills we have provided sample inputs and outputs for your convenience.
 
-1. Counting Sheep
+## 1. Counting Sheep
+
 Write a recursive function that counts how many sheep jump over the fence. Your program should take a number as input. That number should be the number of sheep you have. The function should display the number along with the message "Another sheep jumps over the fence" until no more sheep are left.
 
+```
 Input: 3
 Output:
 3: Another sheep jumps over the fence
 2: Another sheep jumps over the fence
 1: Another sheep jumps over the fence
 All sheep jumped over the fence
+```
+
+**Input/Output:** defined above
+
+**Input to recursive call:** the current remaining number
+
+**Output from recursive call:** current remaining number: 'Another sheep jumps over the fence', decrement remaining number by 1
+
+
 2. Power Calculator
 Write a function called powerCalculator() that takes two parameters, an integer as a base, and another integer as an exponent. The function returns the value of the base raised to the power of the exponent. Use only exponents greater than or equal to 0 (positive numbers)
 
