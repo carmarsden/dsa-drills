@@ -20,29 +20,30 @@ Output:
 All sheep jumped over the fence
 ```
 
-**Input/Output:** defined above
+## 2. Power Calculator
 
-**Input to recursive call:** the current remaining number
-
-**Output from recursive call:** current remaining number: 'Another sheep jumps over the fence', decrement remaining number by 1
-
-
-2. Power Calculator
 Write a function called powerCalculator() that takes two parameters, an integer as a base, and another integer as an exponent. The function returns the value of the base raised to the power of the exponent. Use only exponents greater than or equal to 0 (positive numbers)
 
+```
 powerCalculatorRec(10,2) should return 100
 powerCalculatorRec(10,-2) should return exponent should be >= 0
-3. Reverse String
+```
+
+## 3. Reverse String
 Write a function that reverses a string. Take a string as input, reverse the string, and return the new string.
 
-4. nth Triangular Number
+## 4. nth Triangular Number
+
 Calculate the nth triangular number. A triangular number counts the objects that can form an equilateral triangle. The nth triangular number is the number of dots composing a triangle with n dots on a side, and is equal to the sum of the n natural numbers from 1 to n. This is the Triangular Number Sequence: 1, 3, 6, 10, 15, 21, 28, 36, 45.
 
+```
                           *
             *           *    *
 *     |   *   *  |   *    *    *  |
 
  1st       2nd           3rd             nth?  
+```
+
 5. String Splitter
 Write a recursive function that split a string based on a separator (similar to String.prototype.split). Don't use JS array's split function to solve this problem.
 
