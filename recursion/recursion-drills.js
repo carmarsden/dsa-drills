@@ -68,11 +68,12 @@ function splitString(inputStr) {
 
 // DRILL #6
 
-// Write a recursive function that prints the Fibonacci sequence of a given number. The Fibonacci sequence is a series of numbers in which each number is the sum of the 2 preceding numbers. For example, the 7th Fibonacci number in a Fibonacci sequence is 13. The sequence looks as follows: 1, 1, 2, 3, 5, 8, 13.
-
-
 function fibonacci(input) {
-    
+    if (input === 1 || input === 0) {
+      return input;
+    }
+  
+    return fibonacci(input - 1) + fibonacci(input - 2)    
 }
 
 
@@ -102,3 +103,9 @@ function anagramList(subject) {
 
 // DRILL #11
 // DRILL #12
+
+// Write a recursive function that prints out the binary representation of a given number. For example, the program should take 3 as an input and print 11 as output, or 25 as an input and print 11001 as an output. Note that the binary representation of 0 should be 0.
+
+function binary(number) {
+
+}
