@@ -54,9 +54,10 @@ function doubleArrayValues(array) {
 
 **O(n):** iterate through the full array once, but what you're doing within the iteration is constant time
 
-5. Naive search
+## 5. Naive search
 What is the Big O of the following algorithm? Explain your answer
 
+```
 function naiveSearch(array, item) {
     for (let i = 0; i < array.length; i++) {
         if (array[i] === item) {
@@ -64,9 +65,14 @@ function naiveSearch(array, item) {
         }
     }
 }
-6. Creating pairs:
+```
+
+**O(n):** iterate through the full array once, but what you're doing within the iteration is constant time
+
+## 6. Creating pairs:
 What is the Big O of the following algorithm? Explain your answer
 
+```
 function createPairs(arr) {
     for (let i = 0; i < arr.length; i++) {
         for(let j = i + 1; j < arr.length; j++) {
@@ -74,9 +80,14 @@ function createPairs(arr) {
         }
     }
 }
-7. Compute the sequence
+```
+
+**O(n^2):** two nested loops, need to iterate fully through both, actions within each loop is constant time
+
+## 7. Compute the sequence
 What does the following algorithm do? What is its runtime complexity? Explain your answer
 
+```
 function compute(num) {
     let result = [];
     for (let i = 1; i <= num; i++) {
@@ -93,9 +104,14 @@ function compute(num) {
     }
     return result;
 }
-8. An efficient search
+```
+
+**O(n):** this is generating a fibonacci sequence array with places based on the input. one "loop" up to the number so if you add a twice as big number, needs to perform twice as many actions.
+
+## 8. An efficient search
 In this example, we return to the problem of searching using a more sophisticated approach than in naive search, above. Assume that the input array is always sorted. What is the Big O of the following algorithm? Explain your answer
 
+```
 function efficientSearch(array, item) {
     let minIndex = 0;
     let maxIndex = array.length - 1;
@@ -118,12 +134,21 @@ function efficientSearch(array, item) {
     }
     return -1;
 }
-9. Random element
+```
+
+**O(log(n)):** splitting the searchable area in half each time
+
+## 9. Random element
 What is the Big O of the following algorithm? Explain your answer
 
+```
 function findRandomElement(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
+```
+
+**O(1):** basic arithmetic operation, doesn't matter how big the array input is
+
 10. What Am I?
 What does the following algorithm do? What is the Big O of the following algorithm? Explain your answer
 
