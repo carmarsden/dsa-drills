@@ -149,9 +149,10 @@ function findRandomElement(arr) {
 
 **O(1):** basic arithmetic operation, doesn't matter how big the array input is
 
-10. What Am I?
+## 10. What Am I?
 What does the following algorithm do? What is the Big O of the following algorithm? Explain your answer
 
+```
 function isWhat(n) {
     if (n < 2 || n % 1 != 0) {
         return false;
@@ -161,33 +162,49 @@ function isWhat(n) {
     }
     return true;
 }
-11. Tower of Hanoi
+```
+
+**O(n):** this is determining whether the input number is prime. For doubly big input number need to perform double the number of constant time arithmetic operations.
+
+
+## 11. Tower of Hanoi
 The Tower of Hanoi is a very famous mathematical puzzle (some call it game!). This is how it goes:
 
-There are three rods and a number of disks of different sizes which can slide onto any rod. The puzzle starts with the disks neatly stacked in ascending order of size on one rod, the smallest disk at the top (making a conical shape). The other two rods are empty to begin with.
-The goal of the puzzle is to move the entire stack of rods to another rod (can't be the original rod where it was stacked before) where it will be stacked in the ascending order as well. This should be done obeying the following rules: i) Only one disk may be moved at a time ii) Each move consists of taking the upper disk from one of the rods and sliding it onto another rod, on top of the other disks that may already be present on that rod. iii) A larger disk may not placed on top of a smaller disk
+* There are three rods and a number of disks of different sizes which can slide onto any rod. The puzzle starts with the disks neatly stacked in ascending order of size on one rod, the smallest disk at the top (making a conical shape). The other two rods are empty to begin with.
+* The goal of the puzzle is to move the entire stack of rods to another rod (can't be the original rod where it was stacked before) where it will be stacked in the ascending order as well. This should be done obeying the following rules: 
+    1. Only one disk may be moved at a time 
+    2. Each move consists of taking the upper disk from one of the rods and sliding it onto another rod, on top of the other disks that may already be present on that rod.
+    3. A larger disk may not placed on top of a smaller disk
+
 Input:
 
+```
 Rod A	Rod B	Rod C
 ----		
 ---------		
--------------		
+-------------	
+```
+
 Output:
 
+```
 Rod A	Rod B	Rod C
 ----
 ---------
 -------------
+```
+
 Derive an algorithm to solve the Tower of Hanoi puzzle.
 Implement your algorithm using recursion. Your program should display each movement of the disk from one rod to another.
 If you are given 5 disks, how do the rods look like after 7 recursive calls?
 How many moves are needed to complete the puzzle with 3 disks? with 4 disks? with 5 disks?
 What is the runtime of your algorithm?
-12. Iterative version
+
+## 12. Iterative version
 Solve the drills 1 - 7 from your previous checkpoint (Recursion) iteratively.
 
-13. Recursive Big O
+## 13. Recursive Big O
 Take your solutions from the recursive exercises that you completed in the previous checkpoint and identify the time complexities (big O) of each of them.
 
-14. Iterative Big O
+## 14. Iterative Big O
 Take your solutions from the iterative exercises today and identify the time complexities (big O) of each of them.
