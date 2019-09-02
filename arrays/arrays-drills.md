@@ -149,6 +149,8 @@ Output:
 Given 2 strings, str1 and str2, write a program that checks if str2 is a rotation of str1.
 
 * Input: amazon, azonma
-* Output: False
+* Output: false
 * Input: amazon, azonam
 * Output: true
+
+**Time complexity:** O(n) (as we at worst iterate through the full string n to compare, and after that it's constant-time operations)

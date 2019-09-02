@@ -231,8 +231,25 @@ function drill11(array) {
     return array;
 }
 
-drill11([[1,0,1,1,0],
-        [0,1,1,1,0],
-        [1,1,1,1,1],
-        [1,0,1,1,1],
-        [1,1,1,1,1]]);
+function drill12(str1, str2) {
+
+    // find the biggest chunk of str2 that exists in str1
+    let firstChunk = str2[0];
+    let i = 1;
+    while (str1.includes(firstChunk + str2[i])) {
+        firstChunk = firstChunk + str2[i];
+        i++;
+    }
+    console.log('biggest first chunk: ', firstChunk)
+
+    // remove that chunk from both strings, the remaining chunks should equal if it's a rotation
+    const str1remaining = str1.replace(firstChunk, '');
+    const str2remaining = str2.replace(firstChunk, '');
+
+    console.log('the two remaining chunks: ', str1remaining, str2remaining)
+
+    return (str1remaining === str2remaining)
+}
+
+console.log(drill12('amazon', 'azonma'));
+console.log(drill12('amazon', 'azonam'));
