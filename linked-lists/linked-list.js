@@ -82,4 +82,87 @@ class LinkedList {
         previousNode.next = currNode.next;
     }
 
+    insertBefore(beforeItem, newItem){ 
+        // If the list is empty, return null
+        if (!this.head) {
+            return null;
+        }
+
+        // If the beforeItem is head, make the newItem head
+        if (this.head.value === beforeItem) {
+            this.insertFirst(newItem);
+            return;
+        }
+
+        // Start at head and traverse looking for beforeItem, tracking previous
+        let currNode = this.head;
+        let previousNode = this.head;
+
+        while ((currNode !== null) && (currNode.value !== beforeItem)) {
+            previousNode = currNode;
+            currNode = currNode.next;
+        }
+
+        // If you traverse to the end, return item not found
+        if (currNode === null) {
+            console.log('Item not found');
+            return;
+        }
+
+        // Otherwise, insert newItem, pointed from previousNode and pointing to currNode
+        previousNode.next = new _Node(newItem, currNode);
+    }
+
+    insertAfter(afterItem, newItem){ 
+        // If the list is empty, return null
+        if (!this.head) {
+            return null;
+        }
+
+        // Start at head and traverse looking for afterItem
+        let currNode = this.head;
+        while ((currNode !== null) && (currNode.value !== afterItem)) {
+            currNode = currNode.next;
+        }
+
+        // If you traverse to the end, return item not found
+        if (currNode === null) {
+            console.log('Item not found');
+            return;
+        }
+
+        // Otherwise, insert newItem, pointed from currNode and pointing to currNode's prior pointer
+        currNode.next = new _Node(newItem, currNode.next);
+    }
+
+    insertAt(index, newItem){
+        // If the list is empty, return null
+        if (!this.head) {
+            return null;
+        }
+
+        // If the index is 0, insert at head
+        if (index === 0) {
+            this.insertFirst(newItem);
+        }
+
+        // Otherwise, start at head and traverse up to index # of steps
+        let currNode = this.head;
+        for (let i = 1; i < index; i++) {
+            currNode = currNode.next;
+
+            // If you got to the end, throw index error
+            if (currNode === null) {
+                console.log('Index error, place not found');
+                return;
+            }
+        }
+
+        // Then put newItem after currNode
+        currNode.next = new _Node(newItem, currNode.next);
+    }
+
+
 }
+
+module.exports = LinkedList;
