@@ -85,4 +85,124 @@ function findLast(list) {
     return currNode;
 }
 
-console.log(findLast(main()));
+
+// DRILL 5
+
+function reverseList(list) {
+    // If list is empty, return null
+    if (!list.head) {
+        return null;
+    }
+
+    // Track current node, prev node (to repoint the pointer), and next node (to know where to go next)
+
+    let currNode = list.head;
+    let prevNode = list.head;
+    let nextNode = list.head.next;
+
+    // Start at the head: point to null (this will become the end)
+    list.head.next = null;
+
+    while (nextNode !== null) {
+        // iterate all our counters forward
+        prevNode = currNode;
+        currNode = nextNode;
+        nextNode = currNode.next;
+
+        // repoint currNode to point "backwards"
+        currNode.next = prevNode;
+    }
+
+    // when you reach the end, currNode is the last one that isn't null so is new head
+    list.head = currNode;
+
+    return list
+}
+
+
+// DRILL 6
+
+function thirdFromEnd(list) {
+    // If list is empty, return null
+    if (!list.head) {
+        return null;
+    }
+
+    // Start tracking prior 3
+    let minus2 = list.head;
+    let minus1 = list.head.next ? list.head.next : 'error';
+    let currNode = list.head.next.next ? list.head.next.next : 'error';
+
+    // If that generated errors, there is no 3rd from end
+    if (minus1 === 'error' || currNode === 'error') {
+        return null;
+    }
+
+    // Traverse list, iterating trackers as you go, until you find the node pointing to null (the end)
+    while (currNode.next !== null) {
+        minus2 = minus1;
+        minus1 = currNode;
+        currNode = currNode.next;
+    }
+
+    return minus2;
+}
+
+
+// DRILL 7
+
+function findMiddle(list) {
+    // If list is empty, return null
+    if (!list.head) {
+        return null;
+    }
+
+    // Establish two pointers, one going at 'double' speed
+    let singlePointer = list.head;
+    let doublePointer = list.head;
+
+    // As long as there are two more nodes to traverse, increment pointers
+    while ((doublePointer.next !== null) && (doublePointer.next.next !== null)) {
+        singlePointer = singlePointer.next;
+        doublePointer = doublePointer.next.next;
+    }
+
+    return singlePointer;
+}
+
+
+// DRILL 8
+
+function createCycleList() {
+    let cycleList = new LinkedList();
+    cycleList.insertFirst('Apple');
+    cycleList.insertLast('Banana');
+    cycleList.insertLast('Clementine');
+    cycleList.insertLast('Date');
+    cycleList.insertLast('Elderberry');
+    cycleList.insertLast('Fig');
+
+    cycleList.insertAfter('Elderberry', 'Grapefruit');
+    cycleList.find('Grapefruit').next = cycleList.find('Banana');
+
+    return cycleList;
+}
+
+function identifyCycleList(list) {
+    // Create a set to store nodes we've already seen
+    let priorNodes = new Set();
+
+    // Traverse the list, checking against the set and adding on
+    let currNode = list.head;
+    while (currNode !== null) {
+        if (priorNodes.has(currNode)) {
+            return true;
+        }
+        priorNodes.add(currNode);
+        currNode = currNode.next;
+    }
+
+    return false;
+}
+
+console.log(identifyCycleList(createCycleList()))
