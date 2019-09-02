@@ -59,7 +59,7 @@ What is the length, capacity, and address of your array? Explain the result of y
 * Capacity = 12 --> same as drill 2, and popping items does not force us to resize at all (we leave the memory open)
 * Memory address = 3 --> same as drill 2
 
-# 4. Understanding more about how arrays work
+## 4. Understanding more about how arrays work
 * Print the 1st item in the array arr.
     * `console.log(arr.get(0));` = 3
 * Empty the array and add just 1 item: arr.push("tauhida");
@@ -77,7 +77,7 @@ What is the length, capacity, and address of your array? Explain the result of y
 
 ----------------
 
-# 5. URLify a string
+## 5. URLify a string
 A common mistake users make when they type in an URL is to put spaces between words or letters. A solution that developers can use to solve this problem is to replace any spaces with a %20. Write a method that takes in a string and replaces all its empty spaces with a %20. Your algorithm can only make 1 pass through the string. Examples of input and output for this problem can be
 
 * Input: tauhida parveen
@@ -87,12 +87,12 @@ A common mistake users make when they type in an URL is to put spaces between wo
 
 **Time complexity:** O(n) (as it only makes one pass through the string)
 
-# 6. Filtering an array
+## 6. Filtering an array
 Imagine you have an array of numbers. Write an algorithm to remove all numbers less than 5 from the array. DO NOT use Array's built-in .filter() method here; write the algorithm from scratch.
 
 **Time complexity:** O(n) (as it only makes one pass through the array)
 
-# 7. Max sum in the array
+## 7. Max sum in the array
 You are given an array containing positive and negative integers. Write an algorithm which will find the largest sum in a continuous sequence.
 
 * Input: [4, 6, -3, 5, -2, 1]
@@ -100,7 +100,7 @@ You are given an array containing positive and negative integers. Write an algor
 
 **Time complexity:** O(n^2) (as it has two nested loops: for each pass through the array it needs to do another nearly-full pass)
 
-# 8. Merge arrays
+## 8. Merge arrays
 Imagine you have 2 arrays which have already been sorted. Write an algorithm to merge the 2 arrays into a single array, which should also be sorted.
 
 * Input:[1, 3, 6, 8, 11] and [2, 3, 5, 8, 9, 10]
@@ -108,7 +108,7 @@ Imagine you have 2 arrays which have already been sorted. Write an algorithm to 
 
 **Time complexity:** O(n) (as it is only iterating through each array once, so really more like '2n' but we ignore constant factors)
 
-# 9. Remove characters
+## 9. Remove characters
 Write an algorithm that deletes given characters from a string. For example, given a string of "Battle of the Vowels: Hawaii vs. Grozny" and the characters to be removed are "aeiou", the algorithm should transform the original string to "Bttl f th Vwls: Hw vs. Grzny". Do not use Javascript's filter, split, or join methods.
 
 * Input:'Battle of the Vowels: Hawaii vs. Grozny', 'aeiou'
@@ -116,7 +116,7 @@ Write an algorithm that deletes given characters from a string. For example, giv
 
 **Time complexity:** O(n) (as it is only iterating through the string once, though I'm not 100% sure on the time complexity of JavaScript's String.prototype.includes() method I used...)
 
-# 10. Products
+## 10. Products
 Given an array of numbers, write an algorithm to find out the products of every other number except the number at each index.
 
 * Input:[1, 3, 9, 4]
@@ -124,7 +124,7 @@ Given an array of numbers, write an algorithm to find out the products of every 
 
 **Time complexity:** O(n) (as it is iterating through the array twice, so really more like '2n' but we ignore constant factors)
 
-# 11. 2D array
+## 11. 2D array
 Write an algorithm which searches through a 2D array, and whenever it finds a 0 should set the entire row and column to 0.
 
 ```
@@ -145,7 +145,7 @@ Output:
 
 **Time complexity:** O(n^2) (as it first has a nested loop to fill the sets, then another loop through the array to fill columns, so more like n^2 + n, but we only look at the greatest degree)
 
-# 12. String rotation
+## 12. String rotation
 Given 2 strings, str1 and str2, write a program that checks if str2 is a rotation of str1.
 
 * Input: amazon, azonma
