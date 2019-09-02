@@ -50,7 +50,6 @@ class LinkedList {
     }
 
     remove(item){ 
-
         // If the list is empty, return null
         if (!this.head) {
             return null;

@@ -15,7 +15,7 @@ Walk through the linked list code in the curriculum and understand it well. Then
 * Using the insertAt() method insert Kat in the 3rd position of the list.
 * Remove Tauhida from the list.
 
-## Supplemental functions for a linked list
+## 3. Supplemental functions for a linked list
 Implement the following functions that operate on your linked list class. Note that these should be free functions instead of methods of the linked list class, so implement them outside the linked list class. Test each function using the list created in exercise 1.
 
 * display: displays the linked list
@@ -24,7 +24,7 @@ Implement the following functions that operate on your linked list class. Note t
 * findPrevious: finds the node before the item you are looking for
 * findLast: returns the last node in the linked list
 
-## Mystery program
+## 4. Mystery program
 Analyze the following function (without running it in an IDE) to determine what problem it is trying to solve. What is the time complexity of this algorithm?
 
 ```
@@ -45,17 +45,21 @@ function WhatDoesThisProgramDo(lst) {
 }
 ```
 
-## Reverse a list
+**Analysis:** This seems to go through the linked list and look for any duplicate values, and if it finds a duplicate value, it removes it from the list by pointing "over" the duplicate value node on to the next one.
+
+**Time complexity:** O(n^2) as this has a nested while loop each of which iterates through the full list
+
+## 5. Reverse a list
 Write an algorithm to reverse a linked list. The time complexity of your algorithm should be linear (O(n)). For this exercise, notice we are not asking you just to print the linked list in reverse or use another linked list to store the value in reverse order. Your program should reverse the direction of a given singly linked list. In other words, all pointers should point backward. BONUS: Solve this problem using both recursive and iterative algorithms.
 
-## 3rd from the end
+## 6. 3rd from the end
 Write an algorithm to find the 3rd element from the end of a linked list. Note You may be tempted to add a length property to your linked list class. The length property is not a typical property of linked list, therefore don't make any modification to the linked list class that is provided to you.
 
-## Middle of a list
+## 7. Middle of a list
 Write an algorithm to find the middle element of a linked list. Note You may be tempted to add a length property to your linked list class. The length property is not a typical property of linked list, therefore don't make any modification to the linked list class that is provided to you. Also, finding the size of the linked list using the size() function and dividing it by half will not find the correct middle of the linked list. So, don't use either of these approaches.
 
-## Cycle in a list
+## 8. Cycle in a list
 Write an algorithm to find whether a linked list has a cycle (i.e., whether a node in the list has its next value pointing to an earlier node in the list). For this exercise, create a linked list with the name CycleList. Be sure to insert nodes in the list so that it has a cycle. Then test your program with a cycleList function.
 
-## Sorting a list
+## 9. Sorting a list
 Write an algorithm that will sort a given linked list. For example given a list such as 3->2->5->7->1, your program will output the sorted version of this list which will be 1->2->3->5->7. You may not use another list or any other data structure such as an array to store the data. Also, you can only go through the list once, O(n) runtime.
