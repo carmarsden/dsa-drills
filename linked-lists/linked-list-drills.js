@@ -128,20 +128,18 @@ function thirdFromEnd(list) {
         return null;
     }
 
-    // Start tracking prior 3
+    // Start tracking third from end pointer
     let minus2 = list.head;
-    let minus1 = list.head.next ? list.head.next : 'error';
     let currNode = list.head.next.next ? list.head.next.next : 'error';
 
     // If that generated errors, there is no 3rd from end
-    if (minus1 === 'error' || currNode === 'error') {
+    if (currNode === 'error') {
         return null;
     }
 
-    // Traverse list, iterating trackers as you go, until you find the node pointing to null (the end)
+    // Traverse list, incrementing trackers as you go, until you find the node pointing to null (the end)
     while (currNode.next !== null) {
-        minus2 = minus1;
-        minus1 = currNode;
+        minus2 = minus2.next;
         currNode = currNode.next;
     }
 
