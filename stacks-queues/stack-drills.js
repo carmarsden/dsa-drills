@@ -17,7 +17,7 @@ function main() {
 // DRILL 2
 
 function peek(stack) {
-    return stack.top;
+    return stack.top.value;
 }
 
 function isEmpty(stack) {
@@ -62,3 +62,81 @@ function isPalindrome(str) {
     return (str === compareStr)
 }
 
+// DRILL 4
+
+/*
+Extension exercise: Recognize 3 pairs of brackets: (), [], and {}. These must be correctly nested; "([)]" is incorrect, and should report an error at the ), stating that you were expecting a ] but found a ). If this is starting to look and sound very familiar, congratulations - you're beginning to write a simple language parser!
+
+Extension extension exercise: Also recognize 2 types of quote character: "" and ''. Inside quotes, brackets aren't counted at all - in fact, nothing is counted until you reach the corresponding close quote. 
+*/
+
+function drill4(str) {
+    const openStack = new Stack();
+
+    for (i = 0; i < str.length; i++) {
+        if (str[i] === '(') {
+            openStack.push(i)
+        }
+
+        if (str[i] === ')') {
+            if (openStack.top === null) {
+                return `Error: close paren without opener at character # ${i}`
+            } else {
+                openStack.pop()
+            }
+        }
+    }
+
+    if (openStack.top !== null) {
+        return `Error: open paren without closer at character # ${openStack.pop()}`
+    }
+
+    return true
+}
+
+
+// DRILL 5
+
+/*
+Write a program to sort a stack such that the smallest items are on the top (in ascending order). You can use an additional stack, but you may not use any other data structure (such as an array, or linked list).
+*/
+
+function sort(stack) {
+    const sorted = new Stack();
+
+    // go through the full stack
+    while (stack.top !== null) {
+        // take the item in question out of the unsorted stack
+        const currNode = stack.pop();
+
+        // if there's nothing in the sorted stack, just add it
+        if (sorted.top === null) {
+            sorted.push(currNode)
+        } else {
+            console.log('currNode: ', currNode)
+            console.log('sorted top value: ', sorted.top.value)
+            // move items from sorted stack to original stack until currNode is no longer bigger than the top of sorted stack (or sorted stack is empty)
+            while ((currNode > sorted.top.value) && (sorted.top !== null) ) {
+                stack.push(sorted.pop())
+            }
+            sorted.push(currNode)
+        }
+    }
+
+    console.log('DONE SORTING NOW ---------')
+    return sorted;
+}
+
+function createSort() {
+    let sort = new Stack();
+
+    sort.push(3);
+    sort.push(2);
+    sort.push(5);
+    sort.push(7);
+    sort.push(1);
+
+    return sort;
+}
+
+// display(sort(createSort()))
