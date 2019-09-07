@@ -9,7 +9,10 @@ class HashMap {
     get(key) {
         const index = this._findSlot(key);
         if (this._hashTable[index] === undefined) {
-            throw new Error('Key error');
+            // Note: this was originally: throw new Error('Key error');
+            // However, this shorted out my dedupe function so rewriting with console.log
+            console.log('Key error');
+            return;
         }
         return this._hashTable[index].value;
     }

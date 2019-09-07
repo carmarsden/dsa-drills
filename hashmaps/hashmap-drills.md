@@ -107,8 +107,12 @@ const WhatDoesThisDo = function(){
 ## 4. Remove duplicates
 Implement a function to delete all duplicated characters in a string and keep only the first occurrence of each character. For example, if the input is string “google”, the result after deletion is “gole”. Test your program with a sentence as well such as "google all that you think can think of".
 
+**See hashmap-drills.js: dedupe**
+
 ## 5. Any permutation a palindrome
 Write an algorithm to check whether any permutation of a string is a palindrome. Given the string "acecarr", the algorithm should return true, because the letters in "acecarr" can be rearranged to "racecar", which is a palindrome. In contrast, given the word "north", the algorithm should return false, because there's no way to rearrange those letters to be a palindrome.
+
+**See hashmap-drills.js: canPalindrome**
 
 ## 6. Anagram grouping
 Write an algorithm to group a list of words into anagrams. For example, if the input was ['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'], the output should be: [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']].
