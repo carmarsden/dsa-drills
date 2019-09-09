@@ -143,7 +143,7 @@ Output:
 [0,0,1,1,0]];
 ```
 
-**Time complexity:** O(n^2) (as it first has a nested loop to fill the sets, then another loop through the array to fill columns, so more like n^2 + n, but we only look at the greatest degree)
+**Time complexity:** O(n) (linear--actually m*n--as it iterates through the full dataset once to log 0's and then again to replace them)
 
 ## 12. String rotation
 Given 2 strings, str1 and str2, write a program that checks if str2 is a rotation of str1.
