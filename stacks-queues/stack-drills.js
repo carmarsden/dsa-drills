@@ -97,10 +97,6 @@ function drill4(str) {
 
 // DRILL 5
 
-/*
-Write a program to sort a stack such that the smallest items are on the top (in ascending order). You can use an additional stack, but you may not use any other data structure (such as an array, or linked list).
-*/
-
 function sort(stack) {
     const sorted = new Stack();
 
@@ -116,7 +112,7 @@ function sort(stack) {
             console.log('currNode: ', currNode)
             console.log('sorted top value: ', sorted.top.value)
             // move items from sorted stack to original stack until currNode is no longer bigger than the top of sorted stack (or sorted stack is empty)
-            while ((currNode > sorted.top.value) && (sorted.top !== null) ) {
+            while ((sorted.top !== null) && (currNode > sorted.top.value)) {
                 stack.push(sorted.pop())
             }
             sorted.push(currNode)
@@ -139,4 +135,4 @@ function createSort() {
     return sort;
 }
 
-// display(sort(createSort()))
+display(sort(createSort()))

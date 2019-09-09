@@ -49,6 +49,8 @@ Extension extension exercise: Also recognize 2 types of quote character: "" and 
 ## 5. Sort stack
 Write a program to sort a stack such that the smallest items are on the top (in ascending order). You can use an additional stack, but you may not use any other data structure (such as an array, or linked list).
 
+**See stack-drills.js: sort**
+
 ## 6. Create a queue using Singly linked list
 Walk through the Queue class in the curriculum and understand it well. Then write a Queue class with its core functions (enqueue(), dequeue()) from scratch.
 
