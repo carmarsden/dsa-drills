@@ -29,7 +29,7 @@ Imagine you are looking for a book in a library with a Dewey Decimal index. How 
 
 **Analysis:** The range of possible Dewey Decimal numbers is known: 000 - 999 (as floats, not integers). We also know that a well-stocked library will have a very even distribution of data points (books) across the range. Given the desired number I would start at the end, beginning, or middle of the stacks if it's 000-350, 350-700, or 700-999 respectively (ish). Once at my desired general section I would walk (iterate) through the stacks until I get to the stack that has my number, and then go into that stack. Searching within the stack would first be a trinary (??) search--because I know the start & end values of the stack based on signpostings, determine which third I'm in and then look there. Only once I've honed into the correct third(ish) of the correct stack do I switch over to binary search: look at a book in the middle of my third, see if I need to go to left/right or up/down, move over a chunk and re-evaluate until I've found the right book.
 
-Note that finding a book in a library has a new complexity beyond time (number of times we look at a book) and space (number of Dewey Decimal values we keep in our head) to optimize for: physical movement. This is why straight binary search would not be an optimal search method for finding a physical book. See also: (https://jorendorff.github.io/hackday/2012/library/)[https://jorendorff.github.io/hackday/2012/library/]
+Note that finding a book in a library has a new complexity beyond time (number of times we look at a book) and space (number of Dewey Decimal values we keep in our head) to optimize for: physical movement. This is why straight binary search would not be an optimal search method for finding a physical book. See also: https://jorendorff.github.io/hackday/2012/library/
 
 ## 4. Searching in a BST
 *No coding is needed for these drills*. Once you have answered it, you can then code the tree and implement the traversal to see if your answer is correct.
@@ -41,7 +41,7 @@ What would be its postorder traversal?
     * 14, 19, 15, 27, 25, 79, 90, 91, 89, 35
 
 2) The post order traversal of a binary search tree is 5 7 6 9 11 10 8. What is its pre-order traversal?
-    * self/left/right: 8, 6, 5, 7, 10, 9, 11
+    * 8, 6, 5, 7, 10, 9, 11
 
 ## 5. Implement different tree traversals
 Using your BinarySearchTree class from your previous lesson, create a binary search tree with the following dataset: 25 15 50 10 24 35 70 4 12 18 31 44 66 90 22. Then implement inOrder(), preOrder(), and postOrder() functions. Test your functions with the following datasets.
