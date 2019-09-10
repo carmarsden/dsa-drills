@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  color: white;
+  padding: 10%;
+}
+
+.bodydiv {
+    padding: 40px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+form input {
+    margin: 0 10px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
