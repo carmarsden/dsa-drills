@@ -79,7 +79,7 @@ Write an algorithm to find whether a linked list has a cycle (i.e., whether a no
 
 **See linked-list-drills.js: identifyCycleList**
 
-**Time complexity:** O(n) as it traverses the entire list once to verify falsity (or less than the list to verify truth); note that each step through the list performs Set.prototype.has() check which I assume averages to constant-time operation
+**Time complexity:** O(n) as it traverses the entire list once to verify falsity (or less than the list to verify truth); note that each step through the list performs Set.prototype.has() check which should be constant-time operation
 
 ## 9. Sorting a list
-Write an algorithm that will sort a given linked list. For example given a list such as 3->2->5->7->1, your program will output the sorted version of this list which will be 1->2->3->5->7. You may not use another list or any other data structure such as an array to store the data. Also, you can only go through the list once, O(n) runtime.
+Write an algorithm that will sort a given linked list. For example given a list such as 3->2->5->7->1, your program will output the sorted version of this list which will be 1->2->3->5->7. You may not use another list or any other data structure such as an array to store the data. O(nlog(n)) runtime.

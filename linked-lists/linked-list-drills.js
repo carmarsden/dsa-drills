@@ -171,6 +171,8 @@ function findMiddle(list) {
 
 // DRILL 8
 
+// Note: this implementation seems to work, however, tortoise & hare approach like above (send one pointer out faster and see if it ever circles back around to catch up with slower pointer) is better on space complexity as it doesn't require storing a separate Set
+
 function createCycleList() {
     let cycleList = new LinkedList();
     cycleList.insertFirst('Apple');
