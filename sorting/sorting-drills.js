@@ -148,7 +148,6 @@ function mSortLL(list) {
     const rightList = new LinkedList();
     rightList.head = middleNext;
 
-
     const left = mSortLL(list); // merge sort the left half of the list (now ending at middle)
     const right = mSortLL(rightList); // morge sort the right half of the list (starting from middleNext)
     return mergeLL(left, right);
@@ -198,7 +197,90 @@ function mergeLL(left, right) {
 
 // DRILL 6
 
-// Write an O(n) algorithm to sort an array of integers, where you know in advance what the lowest and highest values are. You can't use arr.splice(), shift() or unshift() for this exercise.
+// helper function insertionSort to sort within the buckets
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let j = i;
+        while ((j > 0) && (arr[j-1] > arr[j])) {
+            swap(arr, j, j-1);
+            j--;
+        }
+    }
+
+    return arr;
+}
+
+function bucketSort(arr, bucketSize) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    // establish bucketSize, default 5
+    bucketSize = bucketSize || 5;
+
+    // find min & max values
+    let min = arr[0];
+    let max = arr[0];
+    arr.forEach(val => {
+        if (val < min) {
+            min = val;
+        } else if (val > max) {
+            max = val;
+        }
+    })
+
+    // initialize buckets
+    const bucketCount = Math.floor((max - min) / bucketSize) + 1;
+    const arrOfBuckets = new Array(bucketCount);
+    for (let i = 0; i < arrOfBuckets.length; i++) {
+        arrOfBuckets[i] = [];
+    }
+
+    console.log('min, max, bucketSize, bucketCount: ', min, max, bucketSize, bucketCount)
+
+    // push values into their buckets
+    arr.forEach(val => {
+        arrOfBuckets[Math.floor((val - min) / bucketSize)].push(val)
+    })
+
+    console.log('here are the buckets: ', arrOfBuckets)
+
+    // sort each bucket using insertion sort, then push all values back into cleared input array
+    arr.length = 0;
+    arrOfBuckets.forEach(bucket => {
+        insertionSort(bucket);
+        bucket.forEach(val => {
+            arr.push(val)
+        });
+    })
+
+    return arr;
+}
+
+const dataCopy = datasort.slice();
+// console.log(bucketSort(dataCopy));
 
 
-console.log(datasort);
+// DRILL 7
+
+function shuffle(arr) {
+    // toShuffle is the number of items left to be shuffled (starts with all elements in the array)
+    let toShuffle = arr.length;
+
+    while (toShuffle > 1) {
+        // choose a new element at random
+        // nextEl will be an int from range 0 to current toShuffle - 1 (math.floor)
+        const nextEl = Math.floor(Math.random() * toShuffle);
+
+        // decrease toShuffle so it's the index for the end of our unshuffled array
+        // (and we now have one less item still to shuffle)
+        toShuffle--;
+
+        // swap nextEl chosen at random with toShuffle (now the end of our unshuffled portion of array)
+        swap(arr, toShuffle, nextEl)
+    }
+
+    return arr;
+}
+
+console.log(shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))

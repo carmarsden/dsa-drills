@@ -148,10 +148,26 @@ Given a Linked List, sort the linked list using merge sort. You will need your l
 
 Write an O(n) algorithm to sort an array of integers, where you know in advance what the lowest and highest values are. You can't use arr.splice(), shift() or unshift() for this exercise.
 
+**See sorting-drills.js: bucketSort**
+
+**Time Complexity:** to create the buckets iterate through full dataset O(n); but then within each bucket we are doing insertion sort which is good for small arrays but has average runtime O(n^2) because it needs to swap most items with most other items. So this does not seem like an overall O(n) algorithm, though most bucket sort implementations recommend using insertion sort or similar.
+
 ## 7. Sort in place
 
 Write an algorithm to shuffle an array into a random order in place (i.e., without creating a new array).
 
+**See sorting-drills.js: shuffle**
+
 ## 8. Sorting books
 
-Imagine that I gave you 20 books to sort in alphabetical order. Express this as an algorithm and them implement your algorithm.
+Imagine that I gave you 20 books to sort in alphabetical order. Express this as an algorithm and then implement your algorithm.
+
+**Psuedo-code steps:** If performing this in practice with physical books, this would be essentially an insertion sort:
+1. Put the books on a shelf (values in an array)
+2. Take the first book and move it to the other side of the shelf (to the "sorted" section of the array, still the first book on the left but it's visually separate so you can track what's sorted or not)
+3. Take the next book (farthest left from the unsorted section of the shelf)
+4. Look through the sorted section of the shelf/array until you find where it goes
+5. Scooch each later-alphabet book over (swap it down the array) so there is room to insert the book you're looking at
+6. Repeat steps 3 - 5 as long as there are still books in the unsorted part of the shelf
+
+**See sorting-drills.js: insertionSort helper function from Drill 6**
