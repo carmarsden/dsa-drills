@@ -54,7 +54,9 @@ function WhatDoesThisProgramDo(lst) {
 **Time complexity:** O(n^2) as this has a nested while loop each of which iterates through the full list
 
 ## 5. Reverse a list
-Write an algorithm to reverse a linked list. The time complexity of your algorithm should be linear (O(n)). For this exercise, notice we are not asking you just to print the linked list in reverse or use another linked list to store the value in reverse order. Your program should reverse the direction of a given singly linked list. In other words, all pointers should point backward. BONUS: Solve this problem using both recursive and iterative algorithms.
+Write an algorithm to reverse a linked list. The time complexity of your algorithm should be linear (O(n)). For this exercise, notice we are not asking you just to print the linked list in reverse or use another linked list to store the value in reverse order. Your program should reverse the direction of a given singly linked list. In other words, all pointers should point backward. 
+
+BONUS: Solve this problem using both recursive and iterative algorithms.
 
 **See linked-list-drills.js: reverseList**
 
@@ -83,3 +85,5 @@ Write an algorithm to find whether a linked list has a cycle (i.e., whether a no
 
 ## 9. Sorting a list
 Write an algorithm that will sort a given linked list. For example given a list such as 3->2->5->7->1, your program will output the sorted version of this list which will be 1->2->3->5->7. You may not use another list or any other data structure such as an array to store the data. O(nlog(n)) runtime.
+
+**See dsa-drills/sorting for linked list merge sort:** [See Drill #5. Sorting a linked list using merge sort](https://github.com/carmarsden/dsa-drills/tree/master/sorting)
