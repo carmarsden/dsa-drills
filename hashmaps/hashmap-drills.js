@@ -1,4 +1,5 @@
 const HashMap = require('./hashmap');
+const HashMap2 = require('./hashmap2');
 
 // DRILL 1
 
@@ -26,6 +27,8 @@ function main() {
     return lor;
 }
 
+//console.log(main())
+
 
 // DRILL 4
 
@@ -46,7 +49,6 @@ function dedupe(str) {
             strHash.set(str[i], 'encountered');
             result += str[i];
         }
-
     }
 
     return result;
@@ -92,13 +94,61 @@ function canPalindrome(str) {
 }
 
 
+// DRILL 6
+
+function anagrams(arr) {
+    // like dedupe & canPalindrome above, we will create a hash for each word with # of times encountered
+    // stringify the hashmap and compare to prior hashmaps
+    // if it exists, push it to that array
+    // if it doesn't exist, create a new array and push it there
+
+    HashMap.MAX_LOAD_RATIO = 0.75;
+    HashMap.SIZE_RATIO = 3;
+
+    // establish results array & an object to use as a 'key' (keys = stringified hash maps, values = index in results array for that mapping)
+    const results = [];
+    const resultKey = {};
+
+    arr.forEach(str => {
+        // clean up string: all lower case, only care about the letters & numbers
+        str = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+
+        // hash each letter of the string with number of times found
+        const strHash = new HashMap();
+        for (i = 0; i < str.length; i++) {
+            if (strHash.get(str[i]) === undefined) {
+                strHash.set(str[i], 1);
+            } else {
+                const increment = strHash.get(str[i]) + 1;
+                strHash.set(str[i], increment)
+            }
+        }
+
+        const stringified = JSON.stringify(strHash._hashTable);
+
+        // if this string already exists in resultKey, push the string to that index in the results array
+        if (resultKey.hasOwnProperty(stringified)) {
+            const idx = resultKey[stringified];
+            results[idx].push(str)
+        } else {
+            // otherwise, add the string to the resultKey with the next open index of the results array
+            // and push onto results array a new array containing that string
+            resultKey[stringified] = results.length;
+            results.push([str])
+        }
+    })
+
+    return (results);
+}
+
+// console.log(anagrams(['east', 'elloh', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race', 'hello']))
+
+
 // DRILL 7
 
-// need to redo after rebuilding hashmap
-
 function drill7() {
-    HashMap.MAX_LOAD_RATIO = 0.5;
-    HashMap.SIZE_RATIO = 3;
+    HashMap2.MAX_LOAD_RATIO = 0.5;
+    HashMap2.SIZE_RATIO = 3;
     const lor = new HashMap2();
 
     lor.set('Hobbit', 'Bilbo');
@@ -116,4 +166,5 @@ function drill7() {
     return lor;
 }
 
-console.log(drill7().get('Human'));
+
+console.log(drill7().get('Maiar'));
