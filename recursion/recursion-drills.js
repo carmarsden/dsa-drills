@@ -54,16 +54,24 @@ function triNum(input) {
 
 // DRILL #5
 
-/*  Write a recursive function that split a string based on a separator (similar to String.prototype.split). Don't use JS array's split function to solve this problem.
+// Note: the details of this drill don't actually seem to return an array of the split pieces, based on the input/output provided--this is modeled on the input/output provided where the final output is just a single string but missing the designated separator
 
-Input: 02/20/2020
-Output: 02202020
-*/
+function splitString(str, separator) {
+    // Base case #1: if we've encountered the separator, don't add it before calling fn on rest of the string
+    if (str[0] === separator) {
+        return splitString(str.slice(1), separator);
+    }
 
-function splitString(inputStr) {
+    // Base case #2: if you're at the end of the string, return it
+    if (str.length <= 1) {
+        return str;
+    }
 
+    // Otherwise: return the first character and call fn on rest of the string
+    return str[0] + splitString(str.slice(1), separator)
 }
 
+//console.log(splitString('02/20/2020', ' '));
 
 
 // DRILL #6
@@ -79,33 +87,262 @@ function fibonacci(input) {
 
 // DRILL #7
 
+// Write a recursive function that finds the factorial of a given number. The factorial of a number can be found by multiplying that number by each number between itself and 1. For example, the factorial of 5 is 5 * 4 * 3 * 2 * 1 = 120.
+
+
 function factorial(input) {
-    if (input === 1) {
+    if (input <= 1) {
         return 1
     }
 
     return input * factorial(input - 1)
 }
 
+//console.log(factorial(5));
+
 
 // DRILL #8
+
+let mySmallMaze = [
+    [' ', ' ', ' '],
+    [' ', '*', ' '],
+    [' ', ' ', 'e']
+];
+
+let myBigMaze = [
+    [' ', ' ', ' ', '*', ' ', ' ', ' '],
+    ['*', '*', ' ', '*', ' ', '*', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', '*', '*', '*', '*', '*', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+];
+
+function oneExit(maze, row = 0, col = 0, path = '') {
+    const maxRow = maze.length - 1;
+    const maxCol = maze[0].length - 1;
+
+    // base case 1: we've hit a wall, a blocked passage, or a visited spot
+    if (row < 0 || row > maxRow || col < 0 || col > maxCol || maze[row][col] === '*' || maze[row][col] === 'v') {
+        console.log(`We hit a barrier at: ${path}`)
+        return;
+    }
+
+    // base case 2: we made it to the exit!
+    if (maze[row][col] === 'e') {
+        console.log('current maze: ')
+        console.log(maze)
+            console.log(`Path to the exit: ${path}`)
+            return path;
+        }
+        
+    // otherwise, mark this space as visited...
+    maze[row][col] = 'v';
+    
+    // ...then traverse the rest of the maze!
+    // prioritize moving right and down
+    // return whichever path gets you there
+    return oneExit(maze, row + 1, col, path + 'D')
+        || oneExit(maze, row, col + 1, path + 'R')
+        || oneExit(maze, row - 1, col, path + 'U')
+        || oneExit(maze, row, col - 1, path + 'L')
+    ;
+}
+
+// oneExit(maze);
+
+
 // DRILL #9
+
+/*
+Notice that this maze has 3 exits. Your recursive function should print all three of the paths with the proper directions. For example, given the maze above, the program should output the following:
+
+Path to the exit: RRDDLLDDRRRRRR
+Path to the exit: RRDDRRUURRDDDD
+Path to the exit: RRDDRRRRDD
+
+*/
+
+function allExits(maze, row = 0, col = 0, path = '') {
+    const maxRow = maze.length - 1;
+    const maxCol = maze[0].length - 1;
+    
+    console.log(maze)
+
+    // base case 1: we've hit a wall, a blocked passage, or a visited spot
+    if (row < 0 || row > maxRow || col < 0 || col > maxCol || maze[row][col] === '*' || maze[row][col] === 'v') {
+        console.log(`We hit a barrier at: ${path}`)
+        return;
+    }
+
+    // base case 2: we made it to the exit!
+    if (maze[row][col] === 'e') {
+        console.log(`Path to the exit: ${path}`)
+        return path;
+    }
+        
+    // otherwise, make a new 'map' of the maze and mark this space as visited...
+    const newMap = maze.slice();
+    newMap[row][col] = 'v';
+    
+    // ...then traverse the rest of the maze! try moving up, left, down, or right
+    // to make this search... return current path + allExits of the rest, in allExits do the movement, then do the check, in base case only return the latest direction???
+    allExits(newMap, row - 1, col, path + 'U')
+    allExits(newMap, row + 1, col, path + 'D')
+    allExits(newMap, row, col - 1, path + 'L')
+    allExits(newMap, row, col + 1, path + 'R');
+}
+
+allExits(myBigMaze);
+
+
+
 // DRILL #10
 
-// An anagram is any word or phrase that uses the letters of a given ("subject") word or phrase in another, rearranged order. Write a function that creates an anagram list, listing all the rearrangements of a given word. For example, if the user types "east", the program should list all 24 permutations, including "eats", "etas", "teas", and non-words like "tsae".
+function anagramList(str) {
+    // base case: with only one letter, return it as an array (this fn will always return an array of string(s))
+    if (str.length <= 1) {
+        return [str]
+    }
 
-// Hint: For your algorithm, you might want to think about a prefix and use that to create the new words. For example, given "east", use "e" as a prefix and place it in front of all 6 permutations of "ast" — "ast", "ats", "sat", "sta", "tas", and "tsa". This will give you the words "east", "eats", "esat", "esta", "etas", and "etsa". Continue this way until you find all the anagrams for "east". Then you can use "a" as a prefix and permute the remaining words "est". For "east", there should be 24 words.
-
-function anagramList(subject) {
+    const results = [];
     
+    // for each letter in the string
+    // use letter as a prefix, and then find all anagrams of remaining letters
+    for (let i = 0; i < str.length; i++) {
+        const prefix = str[i];
+        const remainingLetters = str.slice(0, i) + str.slice(i + 1);
+        const permutations = anagramList(remainingLetters);
 
+        // for each anagram of remaining letters, append the prefix and push it into the total array
+        permutations.forEach(perm => {
+            results.push(prefix + perm)
+        })
+    }
+
+    return results;
 }
+
+// console.log(anagramList('east'))
+
 
 // DRILL #11
+
+const orgInput = {
+    'Zuckerberg': {
+        'Schroepfer': {
+            'Bosworth': [
+                'Steve',
+                'Kyle',
+                'Andra'
+            ],
+            'Zhao': [
+                'Richie',
+                'Sofia',
+                'Jen'
+            ]
+        },
+        'Schrage': {
+            'VanDyck': [
+                'Sabrina',
+                'Michelle',
+                'Josh'
+            ],
+            'Swain': [
+                'Blanch',
+                'Tom',
+                'Joe'
+            ]
+        },
+        'Sandberg': {
+            'Goler': [
+                'Eddie',
+                'Julie',
+                'Annie'
+            ],
+            'Hernandez': [
+                'Rowi',
+                'Inga',
+                'Morgan'
+            ],
+            'Moissinac': [
+                'Amy',
+                'Chuck',
+                'Vinni',
+            ],
+            'Kelley': [
+                'Eric',
+                'Ana',
+                'Wes'   
+            ]
+        }
+    }
+}
+
+function orgChart(input, layer = 0) {
+    const indent = '    ';
+
+    // edge case: input wasn't an object
+    if (typeof(input) !== 'object') {
+        throw new Error('orgChart input must be an object/array')
+    }
+
+    // base case: input is an array (terminal layer of org chart), so print each item and return
+    if (Array.isArray(input)) {
+        input.forEach(name => {
+            console.log(indent.repeat(layer) + name);
+        })
+        return;
+    }    
+
+    // general case: your input is an object, so print each key, and then print the orgCharts of their values
+    if (typeof(input) === 'object') {
+        const keys = Object.keys(input);
+        keys.forEach(key => {
+            console.log(indent.repeat(layer) + key);
+            orgChart(input[key], layer + 1);
+        })
+    }
+}
+
+// orgChart(orgInput);
+
+
 // DRILL #12
 
-// Write a recursive function that prints out the binary representation of a given number. For example, the program should take 3 as an input and print 11 as output, or 25 as an input and print 11001 as an output. Note that the binary representation of 0 should be 0.
+function binary(num, exp) {
+    // if exponent isn't provided, use the highest power of the input
+    exp = exp || Math.floor(Math.log2(num))
 
-function binary(number) {
+    // edge cases: based on exp calculation, we were given zero (log2 = -Infinity) or a negative number (log2 = NaN)
+    if (exp == -Infinity) {
+        return '0'
+    }
+    if (Number.isNaN(exp)) {
+        throw new Error('Input must be positive')
+    }
 
+    // base case: we are past the 'ones' place (2^0)
+    if (exp < 0) {
+        return '';
+    }
+
+    // find the next numeral (0 or 1) in the binary string
+    let nextNumeral;
+    let nextSearch = num;
+    if (num >= (2 ** exp)) {
+        nextNumeral = '1';
+        nextSearch = num - (2 ** exp);
+    } else {
+        nextNumeral = '0';
+    }
+
+    return nextNumeral + binary(nextSearch, exp - 1)    
 }
+
+/*
+console.log('25: ', binary(25))
+console.log('3: ', binary(3))
+console.log('2: ', binary(2))
+console.log('1: ', binary(1))
+console.log('0: ', binary(0))
+*/
