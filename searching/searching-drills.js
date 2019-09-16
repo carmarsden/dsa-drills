@@ -101,7 +101,9 @@ function bfs(tree, values = []) {
 
 // DRILL 7
 
-function drill7(arr) {
+// this was my initial implementation
+// nested loop = time complexity O(n^2)
+function drill7loop(arr) {
     if (arr.length < 2) {
         throw new Error('Array does not contain enough values')
     }
@@ -120,4 +122,29 @@ function drill7(arr) {
     return profit;
 }
 
-//console.log(drill7([128, 97, 121, 123, 98, 97, 105]))
+// second implementation
+// only traverses the array once, so time complexity O(n)
+function drill7(arr) {
+    if (arr.length < 2) {
+        throw new Error('Array does not contain enough values')
+    }
+
+    let minVal = arr[0];
+    let profit = arr[1] - arr[0];
+
+    for (let i = 1; i < arr.length; i++) {
+        // track the minimum value seen so far
+        if (arr[i] < minVal) {
+            minVal = arr[i];
+        }
+
+        // iterate through the loop, comparing backwards to minVal seen so far
+        if ((arr[i] - minVal) > profit) {
+            profit = arr[i] - minVal;
+        }
+    }
+
+    return profit;
+}
+
+console.log(drill7([128, 97, 121, 123, 98, 97, 105]))
