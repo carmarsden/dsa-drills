@@ -87,9 +87,6 @@ function fibonacci(input) {
 
 // DRILL #7
 
-// Write a recursive function that finds the factorial of a given number. The factorial of a number can be found by multiplying that number by each number between itself and 1. For example, the factorial of 5 is 5 * 4 * 3 * 2 * 1 = 120.
-
-
 function factorial(input) {
     if (input <= 1) {
         return 1
@@ -102,6 +99,8 @@ function factorial(input) {
 
 
 // DRILL #8
+
+// Note: this basically uses DFS to return whichever path gets you a valid path
 
 let mySmallMaze = [
     [' ', ' ', ' '],
@@ -123,17 +122,15 @@ function oneExit(maze, row = 0, col = 0, path = '') {
 
     // base case 1: we've hit a wall, a blocked passage, or a visited spot
     if (row < 0 || row > maxRow || col < 0 || col > maxCol || maze[row][col] === '*' || maze[row][col] === 'v') {
-        console.log(`We hit a barrier at: ${path}`)
+        //console.log(`We hit a barrier at: ${path}`)
         return;
     }
 
     // base case 2: we made it to the exit!
     if (maze[row][col] === 'e') {
-        console.log('current maze: ')
-        console.log(maze)
-            console.log(`Path to the exit: ${path}`)
-            return path;
-        }
+        console.log(`Path to the exit: ${path}`)
+        return path;
+    }
         
     // otherwise, mark this space as visited...
     maze[row][col] = 'v';
@@ -148,29 +145,20 @@ function oneExit(maze, row = 0, col = 0, path = '') {
     ;
 }
 
-// oneExit(maze);
+oneExit(myBigMaze);
 
 
 // DRILL #9
 
-/*
-Notice that this maze has 3 exits. Your recursive function should print all three of the paths with the proper directions. For example, given the maze above, the program should output the following:
+// Note: this traverses every possible route, so need to use a string to keep track of which spaces we've visited--can't modify the original or copy array, because of how that gets passed in memory: future calls to the function will view current mapping for an array or set so wouldn't show only the visited squares *in that path*
 
-Path to the exit: RRDDLLDDRRRRRR
-Path to the exit: RRDDRRUURRDDDD
-Path to the exit: RRDDRRRRDD
-
-*/
-
-function allExits(maze, row = 0, col = 0, path = '') {
+function allExits(maze, row = 0, col = 0, visited = '', path = '') {
     const maxRow = maze.length - 1;
     const maxCol = maze[0].length - 1;
-    
-    console.log(maze)
+    const coords = row.toString() + 'x' + col.toString();
 
     // base case 1: we've hit a wall, a blocked passage, or a visited spot
-    if (row < 0 || row > maxRow || col < 0 || col > maxCol || maze[row][col] === '*' || maze[row][col] === 'v') {
-        console.log(`We hit a barrier at: ${path}`)
+    if (row < 0 || row > maxRow || col < 0 || col > maxCol || maze[row][col] === '*' || visited.includes(coords)) {
         return;
     }
 
@@ -179,21 +167,17 @@ function allExits(maze, row = 0, col = 0, path = '') {
         console.log(`Path to the exit: ${path}`)
         return path;
     }
-        
-    // otherwise, make a new 'map' of the maze and mark this space as visited...
-    const newMap = maze.slice();
-    newMap[row][col] = 'v';
-    
-    // ...then traverse the rest of the maze! try moving up, left, down, or right
-    // to make this search... return current path + allExits of the rest, in allExits do the movement, then do the check, in base case only return the latest direction???
-    allExits(newMap, row - 1, col, path + 'U')
-    allExits(newMap, row + 1, col, path + 'D')
-    allExits(newMap, row, col - 1, path + 'L')
-    allExits(newMap, row, col + 1, path + 'R');
+
+    // otherwise, traverse the rest of the maze! try moving up, left, down, or right
+    // append the current spot coordinates to a string representing the coordinates visited
+    // append the current movement to the string representing the path
+    allExits(maze, row - 1, col, visited + `/${coords}`, path + 'U')
+    allExits(maze, row + 1, col, visited + `/${coords}`, path + 'D')
+    allExits(maze, row, col - 1, visited + `/${coords}`, path + 'L')
+    allExits(maze, row, col + 1, visited + `/${coords}`, path + 'R');
 }
 
 allExits(myBigMaze);
-
 
 
 // DRILL #10

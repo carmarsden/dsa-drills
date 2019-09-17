@@ -106,7 +106,7 @@ Path to the exit: RRDDLLDDRRRRRR
 Path to the exit: RRDDRRUURRDDDD
 Path to the exit: RRDDRRRRDD
 
-**See recursion-drills.js: ???**
+**See recursion-drills.js: allExits**
 
 ## 10. Anagrams
 An anagram is any word or phrase that uses the letters of a given ("subject") word or phrase in another, rearranged order. Write a function that creates an anagram list, listing all the rearrangements of a given word. For example, if the user types "east", the program should list all 24 permutations, including "eats", "etas", "teas", and non-words like "tsae".
