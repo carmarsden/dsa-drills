@@ -237,4 +237,133 @@ function reverse(list) {
     return list;
 }
 
-console.log(reverse(main()));
+//console.log(reverse(main()));
+
+
+
+// Given a sorted linked list, write an algorithm to delete all duplicate numbers from the sorted linked list.
+
+function createSortedList() {
+    let sorted = new LList();
+
+    sorted.insertFirst(1);
+    sorted.insertLast(2);
+    sorted.insertLast(3);
+    sorted.insertLast(3);
+    sorted.insertLast(3);
+    sorted.insertLast(5);
+    sorted.insertLast(8);
+    sorted.insertLast(8);
+    sorted.insertLast(10);
+
+    return sorted;
+}
+
+function deleteDup(list) {
+    // iterate through list
+    // keep track of current
+    // if the next value is the same as current value, redirect the current.next
+    
+    // if list is empty
+    if (!list.head) {
+        return list;
+    }
+
+    let currNode = list.head;
+
+    while (currNode.next !== null) {
+        if (currNode.value === currNode.next.value) {
+            currNode.next = currNode.next.next;
+        } else {
+            currNode = currNode.next;
+        }
+    }
+
+    return list;
+}
+
+//deleteDup(createSortedList()).display();
+
+
+
+
+/*
+Given 2 linked lists, where each node in each linked list represents a character in a string, write a function compare() that compares the 2 strings, i.e., it returns 0 if both strings are the same, 1 if the 1st linked list is lexicographically greater, and -1 if the 2nd string is lexicographically greater.
+- Input: `list 1: B->i->l->b->o->a, list 2: B->i->l->b->o` 
+- Output: `1`
+
+- Input: `list 1: B->i->l->b->o, list 2: B->i->l->b->o`
+- Output: `0`
+
+- Input: `list 1: B->i->l->b->o->a, list 2: B->i->l->b->o->b` 
+- Output: `-1`
+*/
+
+function lexList1() {
+    let word = new LList();
+
+    word.insertFirst('B');
+    word.insertLast('i');
+    word.insertLast('l');
+    word.insertLast('b');
+    word.insertLast('o');
+    word.insertLast('a');
+
+    return word;
+}
+
+function lexList2() {
+    let word = new LList();
+
+    word.insertFirst('b');
+    word.insertLast('i');
+    word.insertLast('l');
+    word.insertLast('b');
+    word.insertLast('o');
+    word.insertLast('b');
+
+    return word;
+}
+
+function compareLex(list1, list2) {
+    // start at heads and compare
+    // continue and compare
+
+    // make sure both lists aren't empty
+    if (!list1.head || !list2.head) {
+        return undefined;
+    }
+
+    let currNode1 = list1.head;
+    let currNode2 = list2.head;
+
+    while (currNode1 && currNode2) {
+        const val1 = currNode1.value.toLowerCase();
+        const val2 = currNode2.value.toLowerCase();
+
+        if (val1 > val2) {
+            return 1;
+        }
+        if (val1 < val2) {
+            return -1;
+        }
+        
+        if (val1 === val2) {
+            // move on to the next letters
+            currNode1 = currNode1.next;
+            currNode2 = currNode2.next;
+        }
+    }
+
+    // while loop aborts when at least one of the currNodes ends in null
+    // whichever one still exists (not null) is the lexicographically greater
+    if (currNode1) {
+        return 1
+    } else if (currNode2) {
+        return -1
+    } else {
+        return 0
+    }
+}
+
+console.log(compareLex(lexList1(), lexList2()));
